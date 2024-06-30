@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <cstdlib>  // Para la función exit()
+#include <cstdlib>  // Para la funciÃ³n exit()
 
 // DECLARAMOS LOS COLORES (FONDO Y LETRA)
 #define RESET_COLOR    "\x1b[0m"
@@ -70,7 +70,7 @@ int dibujarTablero()
         printf(AZUL_F AZUL_T "|" RESET_COLOR);
         printf("\n");
 
-        // Imprimir líneas separadoras entre filas
+        // Imprimir lÃ­neas separadoras entre filas
         if (i < 5) {
             line();
         }
@@ -137,7 +137,7 @@ bool verificarGanador(int fila, int col)
 
     if (contador >= 4) return true;  // Ganador encontrado diagonal hacia arriba
 
-    return false;  // No hay ganador en ninguna dirección
+    return false;  // No hay ganador en ninguna direcciÃ³n
 }
 
 
@@ -170,7 +170,7 @@ int juegoUno()
         if (columna < 0 || columna >= COLUMNAS) 
 		{	
 			system("cls");
-            cout << "Columna inválida. Por favor, ingresa un número entre 0 y 6." << endl;
+            cout << "Columna invÃ¡lida. Por favor, ingresa un nÃºmero entre 0 y 6." << endl;
             
             continue;
         }
@@ -186,7 +186,7 @@ int juegoUno()
 				{
                     dibujarTablero();
                     cout << endl;
-                    cout << "¡Jugador " << jugador << " ha ganado!" << endl;
+                    cout << "Â¡Jugador " << jugador << " ha ganado!" << endl;
                     juegoTerminado = true;
                 }
                 break;
@@ -196,7 +196,56 @@ int juegoUno()
         jugador = (jugador == 1) ? 2 : 1;
     }
 
-    // Aquí puedes agregar cualquier limpieza adicional o salida
+    exit(0);
+}
+
+
+int juegoDos()
+{
+	    int jugador = 1;
+    bool juegoTerminado = false;
+
+    while (!juegoTerminado) 
+	{
+        dibujarTablero();
+		
+		int colum;
+        int columna;
+        cout << "\nJugador " << jugador << ", ingresa el numero de columna (1 - 7): ";
+        cin >> colum;
+        
+        columna = colum - 1;
+
+        if (columna < 0 || columna >= COLUMNAS) 
+		{	
+			system("cls");
+            cout << "Columna invÃ¡lida. Por favor, ingresa un nÃºmero entre 0 y 6." << endl;
+            
+            continue;
+        }
+        
+        system("cls");
+
+        for (int i = FILAS - 1; i >= 0; --i) 
+		{
+            if (tablero[i][columna] == 0) 
+			{
+                tablero[i][columna] = jugador;
+                if (verificarGanador(i, columna)) 
+				{
+                    dibujarTablero();
+                    cout << endl;
+                    cout << "Â¡Jugador " << jugador << " ha ganado!" << endl;
+                    juegoTerminado = true;
+                }
+                break;
+            }
+        }
+
+        jugador = (jugador == 1) ? 2 : 1;
+    }
+
+    // AquÃ­ puedes agregar cualquier limpieza adicional o salida
     return 0;
 }
 
@@ -221,19 +270,18 @@ int main()
                 exit(0);
             case 2:
             	system("cls");
-//                juegoDos();
-                // Aquí va el código correspondiente a la opción 2
+                juegoDos();
+                // AquÃ­ va el cÃ³digo correspondiente a la opciÃ³n 2
                 break;
             case 3:
                 cout << "Saliendo del programa..." << endl;
                 salir = true;
                 break;
             default:
-                cout << "Opción inválida. Por favor, seleccione una opción válida." << endl;
+                cout << "OpciÃ³n invÃ¡lida. Por favor, seleccione una opciÃ³n vÃ¡lida." << endl;
                 break;
         }
     }
 
     return 0;
 }
-
