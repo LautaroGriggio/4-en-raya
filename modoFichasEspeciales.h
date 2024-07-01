@@ -205,6 +205,11 @@ int fichaAntigravedad()
 			printf("Mal ingresado. De nuevo");
 			q = false;
 		}
+		else if(lugar - 1 != 0)
+		{
+			q = false;
+			printf("\nOcupado. De nuevo\n");
+		}
 	}
 	while(!q);
 	
@@ -265,7 +270,7 @@ void modoEspecial()
     char modo[5][255]; // CHAR NOMBRE[CANTIDAD][CARACTERES]
     strcpy(modo[1], "\n[|1|] FICHA VERTICAL\n- Cae y destruye todas las fichas (excepto ella) de su columna\n");
     strcpy(modo[2], "\n[|2|] FICHA HORIZONTAL\n- Cae y destruye todas las ficha (excepto ella) de su fila\n- Todas las de encima caen\n- Afecta a la Anti-Gravedad\n");
-    strcpy(modo[3], "\n[|3|] FICHA ANTI-GRAVEDAD\n- Se coloca en cualquier punto del tablero1\n- Reemplaza cualquiera ya existente\n");
+    strcpy(modo[3], "\n[|3|] FICHA ANTI-GRAVEDAD\n- Se coloca en cualquier punto del tablero1\n");
     strcpy(modo[4], "\n[|4|] FICHA DOBLE\n- Se tira una ficha normal\n- Se tira una segunda ficha encima y se lanza un dado\n- Si sale 1 es del 'jugador 1'\n- Si sale 2 es del 'jugador 2'\n- Si sale otro numero, no habra ficha extra\n");
     int uso[5][2] = {0};
    
