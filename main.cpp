@@ -1,7 +1,7 @@
-//#include "modoFichasEspeciales.h"
+#include "modoFichasEspeciales.h"
 #include "modoContrarreloj.h"
-//#include "modoIA.h"
-//#include "modoNormal.h"
+#include "modoIA.h"
+#include "modoNormal.h"
 
 int main() 
 {
@@ -12,6 +12,7 @@ int main()
     printf("1. Jugador vs Jugador\n");
     printf("2. 2 Jugadores - Fichas Especiales\n");
     printf("3. 1v1 Contra Reloj\n");
+    printf("4. Jugador vs Maquina");
 	printf("Cual jugamos?: ");
 	scanf("%d", &opcion);
 
@@ -21,12 +22,12 @@ int main()
 		{
             case 1:
                 system("cls");
-//                juegoNormal();
+                juegoNormal();
                 break;
                 
             case 2:
                 system("cls");
-//                modoEspecial();
+                modoEspecial();
                 break;
                 
             case 3:
@@ -36,7 +37,7 @@ int main()
                 
             case 4:
             	system("cls");
-//            	inteligenciaArtifical();
+            	inteligenciaArtifical();
             	break;
                 
             case 5:
