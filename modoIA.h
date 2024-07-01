@@ -65,7 +65,7 @@ void dibujarTablero3()
         printf(AZUL_F AZUL_T "|" RESET_COLOR);
         printf("\n");
 
-        // Imprimir l√≠neas separadoras entre filas
+        // Imprimir l√É¬≠neas separadoras entre filas
         if (i < 5) {
             line3();
         }
@@ -131,13 +131,8 @@ bool verificarGanador3(int fila, int col)
 
     if (contador >= 4) return true;  // Ganador encontrado diagonal hacia arriba
 
-    return false;  // No hay ganador en ninguna direcci√≥n
+    return false;  // No hay ganador en ninguna direcci√É¬≥n
 }
-
-int columna;
-do {
-    columna = rand() % COLUMNAS3;
-} while (tablero3[0][columna] != 0);
 
 int movimientoia() 
 {
@@ -147,7 +142,7 @@ int movimientoia()
     do {
         columna = rand() % COLUMNAS3;
 
-        // Verificar desde la fila m·s baja hacia arriba si la columna est· disponible
+        // Verificar desde la fila m√°s baja hacia arriba si la columna est√° disponible
         for (int fila = FILAS3 - 1; fila >= 0; --fila) {
             if (tablero3[fila][columna] == 0) {
                 columnaValida = true;
@@ -174,14 +169,14 @@ int inteligenciaArtifical()
         if (jugador == 1) 
         {
             int columna;
-            cout << "\nJugador " << jugador << ", ingresa el n˙mero de columna (1 - 7): ";
+            cout << "\nJugador " << jugador << ", ingresa el n√∫mero de columna (1 - 7): ";
             cin >> columna;
             system("cls");
-            columna--;  // Ajuste de columna a Ìndice base 0
+            columna--;  // Ajuste de columna a √≠ndice base 0
 
             if (columna < 0 || columna >= COLUMNAS3 || tablero3[0][columna] != 0) 
             {
-                cout << "Columna inv·lida o llena. Por favor, ingresa un n˙mero v·lido." << endl;
+                cout << "Columna inv√°lida o llena. Por favor, ingresa un n√∫mero v√°lido." << endl;
                 continue;
             }
 
@@ -192,7 +187,7 @@ int inteligenciaArtifical()
                     if (verificarGanador3(i, columna)) {
                         dibujarTablero3();
                         cout << endl;
-                        cout << "°Jugador " << jugador << " ha ganado!" << endl;
+                        cout << "¬°Jugador " << jugador << " ha ganado!" << endl;
                         juegoTerminado = true;
                     }
                     break;
@@ -211,7 +206,7 @@ int inteligenciaArtifical()
                     {
                         dibujarTablero3();
                         cout << endl;
-                        cout << "°La IA ha ganado!" << endl;
+                        cout << "¬°La IA ha ganado!" << endl;
                         juegoTerminado = true;
                         exit(0);
                     }
@@ -225,4 +220,3 @@ int inteligenciaArtifical()
 
     return 0;
 }
-
