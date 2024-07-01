@@ -161,20 +161,37 @@ bool verificarGanador2(int fila, int col)
 void mostrarTiempoRestante(int jugador, atomic<int>& tiempoRestante, atomic<bool>& turnoActivo) 
 {
     while (tiempoRestante > 0) 
-	{
+    {
         if (turnoActivo) 
-		{
+        {
             cout << "\rJugador " << jugador << " - Tiempo restante: " << tiempoRestante << " segundos " << flush;
             this_thread::sleep_for(chrono::seconds(1));
             --tiempoRestante;
         } 
-		else 
-		{
+        else 
+        {
             this_thread::sleep_for(chrono::milliseconds(100));
         }
     }
+
+    // Cuando el tiempo del jugador llega a cero
+    if (tiempoRestante <= 0) 
+    {
+        cout << "\n¡Tiempo agotado para Jugador " << jugador << "!\n";
+        // Detener el juego y marcar al otro jugador como ganador
+        if (jugador == 1) 
+        {
+            cout << "¡Jugador 2 gana por tiempo!\n";
+        } 
+        else 
+        {
+            cout << "¡Jugador 1 gana por tiempo!\n";
+        }
+        exit(0); // Opción para salir del juego, puedes manejar esto según la lógica de tu programa
+    }
 }
 
+// Función principal del juego
 int contraReloj() 
 {
     int jugador = 1;
@@ -188,7 +205,7 @@ int contraReloj()
     thread tMostrarTiempo2(mostrarTiempoRestante, 2, ref(tiempoRestanteJugador2), ref(turnoActivoJugador2));
 
     while (!juegoTerminado) 
-	{
+    {
         dibujarTablero2();
 
         int colum;
@@ -207,7 +224,7 @@ int contraReloj()
         columna = colum - 1;
 
         if (columna < 0 || columna >= COLUMNAS2) 
-		{
+        {
             system("cls");
             cout << "Columna inválida. Por favor, ingresa un número entre 1 y 7." << endl;
             turnoActivo = false;
@@ -217,12 +234,12 @@ int contraReloj()
         system("cls");
 
         for (int i = FILAS2 - 1; i >= 0; --i) 
-		{
+        {
             if (tablero2[i][columna] == 0) 
-			{
+            {
                 tablero2[i][columna] = jugador;
                 if (verificarGanador2(i, columna)) 
-				{
+                {
                     dibujarTablero2();
                     cout << endl;
                     cout << "¡Jugador " << jugador << " ha ganado!" << endl;
@@ -236,11 +253,10 @@ int contraReloj()
         jugador = (jugador == 1) ? 2 : 1;
     }
 
+    // Esperar a que terminen los hilos de tiempo
     tMostrarTiempo1.join();
     tMostrarTiempo2.join();
 
-//    // Limpiar el tablero2 y volver al menú principal
-//    tablero2.assign(6, vector<int>(7, 0));
-
     return 0;
 }
+
