@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <cstdlib>  // Para la función exit()
+#include <cstdlib>  // Para la funciÃ³n exit()
 
 // DECLARAMOS LOS COLORES (FONDO Y LETRA)
 #define RESET_COLOR    "\x1b[0m"
@@ -27,8 +27,9 @@ using namespace std;
 
 const int FILAS = 6;
 const int COLUMNAS = 7;
+int tablero[FILAS][COLUMNAS];
 
-vector<vector<int> > tablero(FILAS, vector<int>(COLUMNAS, 0));
+
 
 int line()
 {
@@ -67,7 +68,7 @@ int dibujarTablero()
         printf(AZUL_F AZUL_T "|" RESET_COLOR);
         printf("\n");
 
-        // Imprimir líneas separadoras entre filas
+        // Imprimir lÃ­neas separadoras entre filas
         if (i < 5) {
             line();
         }
@@ -134,7 +135,7 @@ bool verificarGanador(int fila, int col)
 
     if (contador >= 4) return true;  // Ganador encontrado diagonal hacia arriba
 
-    return false;  // No hay ganador en ninguna dirección
+    return false;  // No hay ganador en ninguna direcciÃ³n
 }
 
 
@@ -157,7 +158,7 @@ int juegoNormal()
         if (columna < 0 || columna >= COLUMNAS) 
 		{	
 			system("cls");
-            cout << "Columna inválida. Por favor, ingresa un número entre 0 y 6." << endl;
+            cout << "Columna invÃ¡lida. Por favor, ingresa un nÃºmero entre 0 y 6." << endl;
             
             continue;
         }
@@ -173,7 +174,7 @@ int juegoNormal()
 				{
                     dibujarTablero();
                     cout << endl;
-                    cout << "¡Jugador " << jugador << " ha ganado!" << endl;
+                    cout << "Â¡Jugador " << jugador << " ha ganado!" << endl;
                     juegoTerminado = true;
                 }
                 break;
