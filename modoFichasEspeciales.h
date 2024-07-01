@@ -264,8 +264,8 @@ void modoEspecial()
     int k, h, y;
     char modo[5][255]; // CHAR NOMBRE[CANTIDAD][CARACTERES]
     strcpy(modo[1], "\n[|1|] FICHA VERTICAL\n- Cae y destruye todas las fichas (excepto ella) de su columna\n");
-    strcpy(modo[2], "\n[|2|] FICHA HORIZONTAL\n- Cae y destruye todas las ficha (excepto ella) de su fila\n- Todas las de encima caen\n");
-    strcpy(modo[3], "\n[|3|] FICHA ANTI-GRAVEDAD\n- Se coloca en cualquier punto del tablero1\n");
+    strcpy(modo[2], "\n[|2|] FICHA HORIZONTAL\n- Cae y destruye todas las ficha (excepto ella) de su fila\n- Todas las de encima caen\n- Afecta a la Anti-Gravedad\n");
+    strcpy(modo[3], "\n[|3|] FICHA ANTI-GRAVEDAD\n- Se coloca en cualquier punto del tablero1\n- Reemplaza cualquiera ya existente\n");
     strcpy(modo[4], "\n[|4|] FICHA DOBLE\n- Se tira una ficha normal\n- Se tira una segunda ficha encima y se lanza un dado\n- Si sale 1 es del 'jugador 1'\n- Si sale 2 es del 'jugador 2'\n- Si sale otro numero, no habra ficha extra\n");
     int uso[5][2] = {0};
    
@@ -275,12 +275,12 @@ void modoEspecial()
     {   
         jug++; // CONTADOR PARA DETERMINAR EL TURNO
         
-        printf(AMARILLO_F AMARILLO_T "'O'");
-        printf(AMARILLO_T " JUGADOR UNO");
+        printf(AMARILLO_F AMARILLO_T "'O'" RESET_COLOR);
+        printf(AMARILLO_T " JUGADOR UNO" RESET_COLOR);
         printf(" - ");
-        printf(ROJO_F ROJO_T"'X'");
-        printf(ROJO_T " JUGADOR 2");
-        printf(CYAN_T "\nTURNO JUGADOR %d\n\n", jug % 2 + 1);
+        printf(ROJO_F ROJO_T"'X'" RESET_COLOR);
+        printf(ROJO_T " JUGADOR 2" RESET_COLOR);
+        printf(CYAN_T "\nTURNO JUGADOR %d\n\n" RESET_COLOR, jug % 2 + 1);
 		
         	printf("FICHAS ESPECIALES:\n");        
         	for(i = 1; i < 5; i++)
