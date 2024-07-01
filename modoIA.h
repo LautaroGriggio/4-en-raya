@@ -23,11 +23,11 @@
 
 using namespace std;
 
-const int FILAS = 6;
-const int COLUMNAS = 7;
-int tablero[FILAS][COLUMNAS] = {0};  // Inicializar el tablero con ceros
+const int FILAS3 = 6;
+const int COLUMNAS3 = 7;
+int tablero3[FILAS3][COLUMNAS3] = {0};  // Inicializar el tablero3 con ceros
 
-void line() 
+void line3() 
 {
     for (int k = 0; k < 7; ++k) 
 	{
@@ -37,11 +37,11 @@ void line()
     printf("\n");
 }
 
-void dibujarTablero() 
+void dibujarTablero3() 
 {
-    system("cls");  // Limpiar la consola antes de dibujar el tablero
+    system("cls");  // Limpiar la consola antes de dibujar el tablero3
 
-    line();
+    line3();
 
     for (int i = 0; i < 6; i++) 
 	{
@@ -49,43 +49,43 @@ void dibujarTablero()
 		{
             printf(AZUL_F AZUL_T "|" RESET_COLOR);
 
-            if (tablero[i][j] == 0) 
+            if (tablero3[i][j] == 0) 
 			{
-                printf(BLANCO_F BLANCO_T " %d ", tablero[i][j]);
+                printf(BLANCO_F BLANCO_T " %d ", tablero3[i][j]);
             } 
-			else if (tablero[i][j] == 1) 
+			else if (tablero3[i][j] == 1) 
 			{
-                printf(AMARILLO_F AMARILLO_T " %d ", tablero[i][j]);
+                printf(AMARILLO_F AMARILLO_T " %d ", tablero3[i][j]);
             } 
-			else if (tablero[i][j] == 2) 
+			else if (tablero3[i][j] == 2) 
 			{
-                printf(ROJO_F ROJO_T " %d ", tablero[i][j]);
+                printf(ROJO_F ROJO_T " %d ", tablero3[i][j]);
             }
         }
         printf(AZUL_F AZUL_T "|" RESET_COLOR);
         printf("\n");
 
-        // Imprimir lÌneas separadoras entre filas
+        // Imprimir l√≠neas separadoras entre filas
         if (i < 5) {
-            line();
+            line3();
         }
     }
 
-    line();
+    line3();
 }
 
-bool verificarGanador(int fila, int col) 
+bool verificarGanador3(int fila, int col) 
 {
-    int jugadorActual = tablero[fila][col];
+    int jugadorActual = tablero3[fila][col];
     int contador = 1;  // Contador para contar fichas consecutivas del mismo jugador
 
     // Verificar horizontalmente hacia la derecha
-    for (int j = col + 1; j < COLUMNAS && tablero[fila][j] == jugadorActual; ++j) {
+    for (int j = col + 1; j < COLUMNAS3 && tablero3[fila][j] == jugadorActual; ++j) {
         ++contador;
     }
 
     // Verificar horizontalmente hacia la izquierda
-    for (int j = col - 1; j >= 0 && tablero[fila][j] == jugadorActual; --j) {
+    for (int j = col - 1; j >= 0 && tablero3[fila][j] == jugadorActual; --j) {
         ++contador;
     }
 
@@ -94,12 +94,12 @@ bool verificarGanador(int fila, int col)
     contador = 1;
 
     // Verificar verticalmente hacia arriba
-    for (int i = fila - 1; i >= 0 && tablero[i][col] == jugadorActual; --i) {
+    for (int i = fila - 1; i >= 0 && tablero3[i][col] == jugadorActual; --i) {
         ++contador;
     }
 
     // Verificar verticalmente hacia abajo
-    for (int i = fila + 1; i < FILAS && tablero[i][col] == jugadorActual; ++i) {
+    for (int i = fila + 1; i < FILAS3 && tablero3[i][col] == jugadorActual; ++i) {
         ++contador;
     }
 
@@ -108,11 +108,11 @@ bool verificarGanador(int fila, int col)
     contador = 1;
 
     // Verificar diagonal hacia abajo (izquierda a derecha)
-    for (int i = fila + 1, j = col + 1; i < FILAS && j < COLUMNAS && tablero[i][j] == jugadorActual; ++i, ++j) {
+    for (int i = fila + 1, j = col + 1; i < FILAS3 && j < COLUMNAS3 && tablero3[i][j] == jugadorActual; ++i, ++j) {
         ++contador;
     }
 
-    for (int i = fila - 1, j = col - 1; i >= 0 && j >= 0 && tablero[i][j] == jugadorActual; --i, --j) {
+    for (int i = fila - 1, j = col - 1; i >= 0 && j >= 0 && tablero3[i][j] == jugadorActual; --i, --j) {
         ++contador;
     }
 
@@ -121,149 +121,149 @@ bool verificarGanador(int fila, int col)
     contador = 1;
 
     // Verificar diagonal hacia arriba (izquierda a derecha)
-    for (int i = fila - 1, j = col + 1; i >= 0 && j < COLUMNAS && tablero[i][j] == jugadorActual; --i, ++j) {
+    for (int i = fila - 1, j = col + 1; i >= 0 && j < COLUMNAS3 && tablero3[i][j] == jugadorActual; --i, ++j) {
         ++contador;
     }
 
-    for (int i = fila + 1, j = col - 1; i < FILAS && j >= 0 && tablero[i][j] == jugadorActual; ++i, --j) {
+    for (int i = fila + 1, j = col - 1; i < FILAS3 && j >= 0 && tablero3[i][j] == jugadorActual; ++i, --j) {
         ++contador;
     }
 
     if (contador >= 4) return true;  // Ganador encontrado diagonal hacia arriba
 
-    return false;  // No hay ganador en ninguna direcciÛn
+    return false;  // No hay ganador en ninguna direcci√≥n
 }
 
 int movimientoia() 
 {
     // Verificar si la IA puede ganar en el siguiente movimiento
-    for (int col = 0; col < COLUMNAS; ++col) 
+    for (int col = 0; col < COLUMNAS3; ++col) 
 	{
-        for (int fila = FILAS - 1; fila >= 0; --fila) 
+        for (int fila = FILAS3 - 1; fila >= 0; --fila) 
 		{
-            if (tablero[fila][col] == 0) 
+            if (tablero3[fila][col] == 0) 
 			{
-                // Simular colocaciÛn de ficha y verificar si la IA ganarÌa
-                tablero[fila][col] = 2;  // 2 representa la ficha de la IA
+                // Simular colocaci√≥n de ficha y verificar si la IA ganar√≠a
+                tablero3[fila][col] = 2;  // 2 representa la ficha de la IA
 
-                if (verificarGanador(fila, col)) 
+                if (verificarGanador3(fila, col)) 
 				{
-                    tablero[fila][col] = 0;  // Deshacer movimiento simulado
-                    return col;  // Devolver la columna donde la IA colocar· la ficha
+                    tablero3[fila][col] = 0;  // Deshacer movimiento simulado
+                    return col;  // Devolver la columna donde la IA colocar√° la ficha
                 }
 
-                tablero[fila][col] = 0;  // Deshacer movimiento simulado
+                tablero3[fila][col] = 0;  // Deshacer movimiento simulado
                 break;  // No es necesario seguir verificando esta columna
             }
         }
     }
 
-    // Verificar si el jugador humano est· a punto de ganar y bloquear
-    for (int col = 0; col < COLUMNAS; ++col) 
+    // Verificar si el jugador humano est√° a punto de ganar y bloquear
+    for (int col = 0; col < COLUMNAS3; ++col) 
 	{
-        for (int fila = FILAS - 1; fila >= 0; --fila) 
+        for (int fila = FILAS3 - 1; fila >= 0; --fila) 
 		{
-            if (tablero[fila][col] == 0) 
+            if (tablero3[fila][col] == 0) 
 			{
-                // Simular colocaciÛn de ficha y verificar si el jugador ganarÌa
-                tablero[fila][col] = 1;  // 1 representa la ficha del jugador humano
+                // Simular colocaci√≥n de ficha y verificar si el jugador ganar√≠a
+                tablero3[fila][col] = 1;  // 1 representa la ficha del jugador humano
 
-                if (verificarGanador(fila, col)) 
+                if (verificarGanador3(fila, col)) 
 				{
-                    tablero[fila][col] = 0;  // Deshacer movimiento simulado
-                    return col;  // Devolver la columna donde la IA colocar· la ficha para bloquear
+                    tablero3[fila][col] = 0;  // Deshacer movimiento simulado
+                    return col;  // Devolver la columna donde la IA colocar√° la ficha para bloquear
                 }
 
-                tablero[fila][col] = 0;  // Deshacer movimiento simulado
+                tablero3[fila][col] = 0;  // Deshacer movimiento simulado
                 break;  // No es necesario seguir verificando esta columna
             }
         }
     }
 
-    // Verificar si la IA puede formar un tres en lÌnea para generar peligro
-    for (int col = 0; col < COLUMNAS; ++col) 
+    // Verificar si la IA puede formar un tres en l√≠nea para generar peligro
+    for (int col = 0; col < COLUMNAS3; ++col) 
 	{
-        for (int fila = FILAS - 1; fila >= 0; --fila) 
+        for (int fila = FILAS3 - 1; fila >= 0; --fila) 
 		{
-            if (tablero[fila][col] == 0) 
+            if (tablero3[fila][col] == 0) 
 			{
-                // Simular colocaciÛn de ficha y verificar si formarÌa un tres en lÌnea
-                tablero[fila][col] = 2;  // 2 representa la ficha de la IA
+                // Simular colocaci√≥n de ficha y verificar si formar√≠a un tres en l√≠nea
+                tablero3[fila][col] = 2;  // 2 representa la ficha de la IA
 
                 // Verificar horizontalmente hacia la derecha
                 int contador = 1;
-                for (int j = col + 1; j < COLUMNAS && tablero[fila][j] == 2; ++j) 
+                for (int j = col + 1; j < COLUMNAS3 && tablero3[fila][j] == 2; ++j) 
 				{
                     ++contador;
                 }
 
                 // Verificar horizontalmente hacia la izquierda
-                for (int j = col - 1; j >= 0 && tablero[fila][j] == 2; --j) 
+                for (int j = col - 1; j >= 0 && tablero3[fila][j] == 2; --j) 
 				{
                     ++contador;
                 }
 
                 if (contador >= 3) 
 				{
-                    tablero[fila][col] = 0;  // Deshacer movimiento simulado
-                    return col;  // Devolver la columna donde la IA colocar· la ficha
+                    tablero3[fila][col] = 0;  // Deshacer movimiento simulado
+                    return col;  // Devolver la columna donde la IA colocar√° la ficha
                 }
 
                 // Verificar verticalmente hacia arriba
                 contador = 1;
-                for (int i = fila - 1; i >= 0 && tablero[i][col] == 2; --i) 
+                for (int i = fila - 1; i >= 0 && tablero3[i][col] == 2; --i) 
 				{
                     ++contador;
                 }
 
                 // Verificar verticalmente hacia abajo
-                for (int i = fila + 1; i < FILAS && tablero[i][col] == 2; ++i) 
+                for (int i = fila + 1; i < FILAS3 && tablero3[i][col] == 2; ++i) 
 				{
                     ++contador;
                 }
 
                 if (contador >= 3) 
 				{
-                    tablero[fila][col] = 0;  // Deshacer movimiento simulado
-                    return col;  // Devolver la columna donde la IA colocar· la ficha
+                    tablero3[fila][col] = 0;  // Deshacer movimiento simulado
+                    return col;  // Devolver la columna donde la IA colocar√° la ficha
                 }
 
                 // Verificar diagonal hacia abajo (izquierda a derecha)
                 contador = 1;
-                for (int i = fila + 1, j = col + 1; i < FILAS && j < COLUMNAS && tablero[i][j] == 2; ++i, ++j) 
+                for (int i = fila + 1, j = col + 1; i < FILAS3 && j < COLUMNAS3 && tablero3[i][j] == 2; ++i, ++j) 
 				{
                     ++contador;
                 }
 
-                for (int i = fila - 1, j = col - 1; i >= 0 && j >= 0 && tablero[i][j] == 2; --i, --j) 
+                for (int i = fila - 1, j = col - 1; i >= 0 && j >= 0 && tablero3[i][j] == 2; --i, --j) 
 				{
                     ++contador;
                 }
 
                 if (contador >= 3) 
 				{
-                    tablero[fila][col] = 0;  // Deshacer movimiento simulado
-                    return col;  // Devolver la columna donde la IA colocar· la ficha
+                    tablero3[fila][col] = 0;  // Deshacer movimiento simulado
+                    return col;  // Devolver la columna donde la IA colocar√° la ficha
                 }
 
                 // Verificar diagonal hacia arriba (izquierda a derecha)
                 contador = 1;
-                for (int i = fila - 1, j = col + 1; i >= 0 && j < COLUMNAS && tablero[i][j] == 2; --i, ++j) 
+                for (int i = fila - 1, j = col + 1; i >= 0 && j < COLUMNAS3 && tablero3[i][j] == 2; --i, ++j) 
 				{
                     ++contador;
                 }
 
-                for (int i = fila + 1, j = col - 1; i < FILAS && j >= 0 && tablero[i][j] == 2; ++i, --j) 
+                for (int i = fila + 1, j = col - 1; i < FILAS3 && j >= 0 && tablero3[i][j] == 2; ++i, --j) 
 				{
                     ++contador;
                 }
 
                 if (contador >= 3) {
-                    tablero[fila][col] = 0;  // Deshacer movimiento simulado
-                    return col;  // Devolver la columna donde la IA colocar· la ficha
+                    tablero3[fila][col] = 0;  // Deshacer movimiento simulado
+                    return col;  // Devolver la columna donde la IA colocar√° la ficha
                 }
 
-                tablero[fila][col] = 0;  // Deshacer movimiento simulado
+                tablero3[fila][col] = 0;  // Deshacer movimiento simulado
                 break;  // No es necesario seguir verificando esta columna
             }
         }
@@ -273,8 +273,8 @@ int movimientoia()
     int columna;
     do 
 	{
-        columna = rand() % COLUMNAS;
-    } while (tablero[0][columna] != 0);  // Verificar que la columna no estÈ llena
+        columna = rand() % COLUMNAS3;
+    } while (tablero3[0][columna] != 0);  // Verificar que la columna no est√© llena
 
     return columna;
 }
@@ -286,7 +286,7 @@ int inteligenciaArtifical()
 
     while (!juegoTerminado) 
 	{
-        dibujarTablero();
+        dibujarTablero3();
 
         // Turno del jugador humano
         if (jugador == 1) 
@@ -295,23 +295,23 @@ int inteligenciaArtifical()
             cout << "\nJugador " << jugador << ", ingresa el numero de columna (1 - 7): ";
             cin >> columna;
             system("cls");    
-            columna--;  // Ajuste de columna a Ìndice base 0
+            columna--;  // Ajuste de columna a √≠ndice base 0
 
-            if (columna < 0 || columna >= COLUMNAS || tablero[0][columna] != 0) 
+            if (columna < 0 || columna >= COLUMNAS3 || tablero3[0][columna] != 0) 
 			{
                 system("cls");
-                cout << "Columna inv·lida o llena. Por favor, ingresa un n˙mero v·lido." << endl;
+                cout << "Columna inv√°lida o llena. Por favor, ingresa un n√∫mero v√°lido." << endl;
                 continue;
             }
 
-            for (int i = FILAS - 1; i >= 0; --i) 
+            for (int i = FILAS3 - 1; i >= 0; --i) 
 			{
-                if (tablero[i][columna] == 0) {
-                    tablero[i][columna] = jugador;
-                    if (verificarGanador(i, columna)) {
-                        dibujarTablero();
+                if (tablero3[i][columna] == 0) {
+                    tablero3[i][columna] = jugador;
+                    if (verificarGanador3(i, columna)) {
+                        dibujarTablero3();
                         cout << endl;
-                        cout << "°Jugador " << jugador << " ha ganado!" << endl;
+                        cout << "¬°Jugador " << jugador << " ha ganado!" << endl;
                         juegoTerminado = true;
                     }
                     break;
@@ -322,23 +322,23 @@ int inteligenciaArtifical()
         else {
             int columna = movimientoia();
             system("cls"); 
-            for (int i = FILAS - 1; i >= 0; --i) 
+            for (int i = FILAS3 - 1; i >= 0; --i) 
 			{
-                if (tablero[i][columna] == 0) 
+                if (tablero3[i][columna] == 0) 
 				{
-                    tablero[i][columna] = jugador;
-                    if (verificarGanador(i, columna)) 
+                    tablero3[i][columna] = jugador;
+                    if (verificarGanador3(i, columna)) 
 					{
-                        dibujarTablero();
+                        dibujarTablero3();
                         cout << endl;
-                        cout << "°La IA ha ganado!" << endl;
+                        cout << "¬°La IA ha ganado!" << endl;
                         juegoTerminado = true;
                     }
                     break;
                 }
             }
 
-        	system("cls"); // Limpiar pantalla despuÈs de que la IA juegue
+        	system("cls"); // Limpiar pantalla despu√©s de que la IA juegue
         }
 
         jugador = (jugador == 1) ? 2 : 1;
