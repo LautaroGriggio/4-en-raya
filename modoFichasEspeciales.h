@@ -25,15 +25,16 @@
 #define BLANCO_T       "\x1b[37m"
 #define BLANCO_F       "\x1b[47m"
 
-const int FILAS = 6;
-const int COLUMNAS = 7;
+const int FILAS1 = 6;
+const int COLUMNAS1 = 7;
+int tablero1[FILAS1][COLUMNAS1];
+
 int i, j;
 int jug = 1;
 int lugar, columna;
-int tablero[FILAS][COLUMNAS] = {0};
 
 // PARA HACER LAS LINEAS DEL TABLERO
-int line()
+int line1()
 {
 	for (int k = 0; k < 7; ++k) 
 	{
@@ -44,9 +45,9 @@ int line()
 }
 
 
-int dibujarTablero() 
+int dibujarTablero1() 
 {
-	line();
+	line1();
 	
     for(int i = 0; i < 6; i++)
     {
@@ -54,91 +55,91 @@ int dibujarTablero()
         {
             printf(AZUL_F AZUL_T "|" RESET_COLOR);
             
-            if(tablero[i][j] == 0)
+            if(tablero1[i][j] == 0)
             {
-                printf(BLANCO_F BLANCO_T " %d ", tablero[i][j]);
+                printf(BLANCO_F BLANCO_T " %d ", tablero1[i][j]);
             }
-            else if(tablero[i][j] == 1)
+            else if(tablero1[i][j] == 1)
             {
-                printf(AMARILLO_F AMARILLO_T " %d ", tablero[i][j]);
+                printf(AMARILLO_F AMARILLO_T " %d ", tablero1[i][j]);
             }
-            else if(tablero[i][j] == 2)
+            else if(tablero1[i][j] == 2)
             {
-                printf(ROJO_F ROJO_T " %d ", tablero[i][j]);
+                printf(ROJO_F ROJO_T " %d ", tablero1[i][j]);
             }
         }
         printf(AZUL_F AZUL_T "|" RESET_COLOR);
         printf("\n");
 
-        // Imprimir líneas separadoras entre filas
+        // Imprimir lÃ­neas separadoras entre filas
         if (i < 5) {
-            line();
+            line1();
         }
     }
     
-    line();
+    line1();
 }
 
 
 // GANADORES
-int verificarGanador() 
+int verificarGanador1() 
 {
-    for (i = 0; i < FILAS; i++) // GANADOR POR FILAS
+    for (i = 0; i < FILAS1; i++) // GANADOR POR FILAS1
     {
-        for (j = 0; j <= COLUMNAS - 4; j++) 
+        for (j = 0; j <= COLUMNAS1 - 4; j++) 
         {
-            if (tablero[i][j] == 1 && tablero[i][j + 1] == 1 && tablero[i][j + 2] == 1 && tablero[i][j + 3] == 1) 
+            if (tablero1[i][j] == 1 && tablero1[i][j + 1] == 1 && tablero1[i][j + 2] == 1 && tablero1[i][j + 3] == 1) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
-            else if (tablero[i][j] == 2 && tablero[i][j + 1] == 2 && tablero[i][j + 2] == 2 && tablero[i][j + 3] == 2) 
+            else if (tablero1[i][j] == 2 && tablero1[i][j + 1] == 2 && tablero1[i][j + 2] == 2 && tablero1[i][j + 3] == 2) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
         }
     }
     
-    for (i = 0; i <= FILAS - 4; i++) // GANADOR POR COLUMNAS
+    for (i = 0; i <= FILAS1 - 4; i++) // GANADOR POR COLUMNAS1
     {
-        for (j = 0; j < COLUMNAS; j++)
+        for (j = 0; j < COLUMNAS1; j++)
         {
-            if (tablero[i][j] == 1 && tablero[i + 1][j] == 1 && tablero[i + 2][j] == 1 && tablero[i + 3][j] == 1) 
+            if (tablero1[i][j] == 1 && tablero1[i + 1][j] == 1 && tablero1[i + 2][j] == 1 && tablero1[i + 3][j] == 1) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
-            else if (tablero[i][j] == 2 && tablero[i + 1][j] == 2 && tablero[i + 2][j] == 2 && tablero[i + 3][j] == 2) 
+            else if (tablero1[i][j] == 2 && tablero1[i + 1][j] == 2 && tablero1[i + 2][j] == 2 && tablero1[i + 3][j] == 2) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
         }
     }
     
-    for (i = 0; i <= FILAS - 4; i++) // GANADOR EN DIAGONAL (IZQUIERDA A DERECHA)
+    for (i = 0; i <= FILAS1 - 4; i++) // GANADOR EN DIAGONAL (IZQUIERDA A DERECHA)
     {
-        for (j = 0; j <= COLUMNAS - 4; j++) 
+        for (j = 0; j <= COLUMNAS1 - 4; j++) 
 		{
-            if (tablero[i][j] == 1 && tablero[i + 1][j + 1] == 1 && tablero[i + 2][j + 2] == 1 && tablero[i + 3][j + 3] == 1) 
+            if (tablero1[i][j] == 1 && tablero1[i + 1][j + 1] == 1 && tablero1[i + 2][j + 2] == 1 && tablero1[i + 3][j + 3] == 1) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
-            else if (tablero[i][j] == 2 && tablero[i + 1][j + 1] == 2 && tablero[i + 2][j + 2] == 2 && tablero[i + 3][j + 3] == 2) 
+            else if (tablero1[i][j] == 2 && tablero1[i + 1][j + 1] == 2 && tablero1[i + 2][j + 2] == 2 && tablero1[i + 3][j + 3] == 2) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
         }
     }
     
-    for (i = 0; i <= FILAS - 4; i++) // GANADOR EN DIAGONAL (DERECHA A IZQUIERDA)
+    for (i = 0; i <= FILAS1 - 4; i++) // GANADOR EN DIAGONAL (DERECHA A IZQUIERDA)
     {
-        for (j = 3; j < COLUMNAS; j++) 
+        for (j = 3; j < COLUMNAS1; j++) 
         {
-            if (tablero[i][j] == 1 && tablero[i + 1][j - 1] == 1 && tablero[i + 2][j - 2] == 1 && tablero[i + 3][j - 3] == 1) 
+            if (tablero1[i][j] == 1 && tablero1[i + 1][j - 1] == 1 && tablero1[i + 2][j - 2] == 1 && tablero1[i + 3][j - 3] == 1) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
-            else if (tablero[i][j] == 2 && tablero[i + 1][j - 1] == 2 && tablero[i + 2][j - 2] == 2 && tablero[i + 3][j - 3] == 2) 
+            else if (tablero1[i][j] == 2 && tablero1[i + 1][j - 1] == 2 && tablero1[i + 2][j - 2] == 2 && tablero1[i + 3][j - 3] == 2) 
             {
-                return tablero[i][j];
+                return tablero1[i][j];
             }
         }
     }
@@ -150,39 +151,39 @@ int verificarGanador()
 // MODO FICHA VERTICAL
 void fichaVertical()
 {
-	for(i = 0; i < FILAS; i++)
+	for(i = 0; i < FILAS1; i++)
 	{
-		tablero[i][columna] = 0;
+		tablero1[i][columna] = 0;
 	}
 	
-	lugar = FILAS - 1;
+	lugar = FILAS1 - 1;
 }
 
 
 // MODO FICHA HORIZONTAL
 void fichaHorizontal()
 {
-    if (lugar >= 0 && lugar < FILAS) 
+    if (lugar >= 0 && lugar < FILAS1) 
     {
         // Destruye todas las fichas en la fila especificada
-        for (i = 0; i < COLUMNAS; i++) 
+        for (i = 0; i < COLUMNAS1; i++) 
         {
-            tablero[lugar][i] = 0;
+            tablero1[lugar][i] = 0;
         }
 
         // Hacer que las fichas por encima de la fila eliminada caigan
         for (i = lugar; i > 0; i--)
         {
-            for (j = 0; j < COLUMNAS; j++)
+            for (j = 0; j < COLUMNAS1; j++)
             {
-                tablero[i][j] = tablero[i-1][j];
+                tablero1[i][j] = tablero1[i-1][j];
             }
         }
 
         // Vaciar la primera fila
-        for (j = 0; j < COLUMNAS; j++)
+        for (j = 0; j < COLUMNAS1; j++)
         {
-            tablero[0][j] = 0;
+            tablero1[0][j] = 0;
         }
     }
 }
@@ -226,12 +227,12 @@ void fichaDoble()
     if(dado == (jug % 2 + 1)) // SI EL DADO ES IGUAL AL NUMERO DEL JUGADOR (1 O 2)
     {
         printf("Funciono!");
-        tablero[lugar - 1][columna] = dado;
+        tablero1[lugar - 1][columna] = dado;
     }
     else if((dado == 1 && (jug % 2 + 1) == 2) || (dado == 2 && (jug % 2 + 1) == 1)) // SI ES 1 Y LO TIRO EL JUGADOR 2 O VICEVERSA
     {
         printf("JAJAJAJAJAJ");
-        tablero[lugar - 1][columna] = dado;
+        tablero1[lugar - 1][columna] = dado;
     }
     else // NT
     {
@@ -264,11 +265,11 @@ void modoEspecial()
     char modo[5][255]; // CHAR NOMBRE[CANTIDAD][CARACTERES]
     strcpy(modo[1], "\n[|1|] FICHA VERTICAL\n- Cae y destruye todas las fichas (excepto ella) de su columna\n");
     strcpy(modo[2], "\n[|2|] FICHA HORIZONTAL\n- Cae y destruye todas las ficha (excepto ella) de su fila\n- Todas las de encima caen\n");
-    strcpy(modo[3], "\n[|3|] FICHA ANTI-GRAVEDAD\n- Se coloca en cualquier punto del tablero\n");
+    strcpy(modo[3], "\n[|3|] FICHA ANTI-GRAVEDAD\n- Se coloca en cualquier punto del tablero1\n");
     strcpy(modo[4], "\n[|4|] FICHA DOBLE\n- Se tira una ficha normal\n- Se tira una segunda ficha encima y se lanza un dado\n- Si sale 1 es del 'jugador 1'\n- Si sale 2 es del 'jugador 2'\n- Si sale otro numero, no habra ficha extra\n");
     int uso[5][2] = {0};
    
-    dibujarTablero(); // HACEMOS EL TABLERO
+    dibujarTablero1(); // HACEMOS EL TABLERO
     
     do // BUCLE PARA TODOS LOS TURNOS
     {   
@@ -303,7 +304,7 @@ void modoEspecial()
             	{
                 	system("cls");
                 	printf("Ya usaste esta ficha.\n\n");
-                	dibujarTablero();
+                	dibujarTablero1();
                 	continue;
             	}
             	else
@@ -319,7 +320,7 @@ void modoEspecial()
         	{
             	system("cls");
             	printf("Numero mal ingresado.\n\n");
-            	dibujarTablero();
+            	dibujarTablero1();
             	continue;
         	}
         
@@ -335,7 +336,7 @@ void modoEspecial()
         {
             printf("Columna fuera de rango. Por favor ingrese una columna valida (1 - 7). Vamos de nuevo.\n\n");
             jug++;
-            dibujarTablero();
+            dibujarTablero1();
             continue;
         }
         
@@ -343,9 +344,9 @@ void modoEspecial()
         
         k = 0;
         
-        for (i = 0; i < FILAS; i++) // DETERMINAMOS DONDE VA LA FICHA
+        for (i = 0; i < FILAS1; i++) // DETERMINAMOS DONDE VA LA FICHA
         {
-            if (tablero[i][columna] != 0) // SI POR LA COLUMNA ENCUENTRA UNA FICHA, CONTEA A 'K'
+            if (tablero1[i][columna] != 0) // SI POR LA COLUMNA ENCUENTRA UNA FICHA, CONTEA A 'K'
             {
                 k++;
             } 
@@ -355,7 +356,7 @@ void modoEspecial()
             }
         }
         
-        if (k == FILAS) // LLENO
+        if (k == FILAS1) // LLENO
         {
             printf("Columna llena. Elija otra columna.\n");
             continue;
@@ -374,7 +375,7 @@ void modoEspecial()
              fichaVertical();
         }
         
-        tablero[lugar][columna] = jug % 2 + 1; // SE COLOCA LA FICHA EN EL LUGAR LIBRE Y AL JUGADOR QUE SEGUN CORRESPONDA
+        tablero1[lugar][columna] = jug % 2 + 1; // SE COLOCA LA FICHA EN EL LUGAR LIBRE Y AL JUGADOR QUE SEGUN CORRESPONDA
         
         if(uso[3][jug % 2 + 1] == 1)
         {
@@ -383,11 +384,11 @@ void modoEspecial()
         
         uso[especial - 1][jug % 2 + 1] = 2;
         
-        dibujarTablero(); // VOLVEMOS A DIBUJAR TABLERO
+        dibujarTablero1(); // VOLVEMOS A DIBUJAR TABLERO
         
-        if (verificarGanador() != 0) // SI LA FUNCION RETORNA 1 (HAY GANADOR) SE TERMINA EL JUEGO
+        if (verificarGanador1() != 0) // SI LA FUNCION RETORNA 1 (HAY GANADOR) SE TERMINA EL JUEGO
         {
-            int ganador = verificarGanador();
+            int ganador = verificarGanador1();
             printf("GANO EL GOAT! GANO EL %d", jug % 2 + 1);
             exit(0);
         }
